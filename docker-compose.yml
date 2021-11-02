@@ -1,0 +1,15 @@
+services:
+  zookeeper:
+    image: zookeeper
+    env_file:
+      - .env
+  kafka:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    env_file:
+      - .env
